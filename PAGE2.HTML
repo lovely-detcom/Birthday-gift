@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Four Little Surprises 🎈</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    margin-top: 35px;
+    font-size: 35px;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.balloons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    max-width: 650px;
+    margin: 40px auto;
+}
+
+.balloon-box {
+    width: 120px;
+    height: 170px;
+    position: relative;
+}
+
+.balloon {
+    width: 95px;
+    height: 120px;
+    border-radius: 50%;
+    position: absolute;
+    left: 12px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: inset -10px -10px 15px rgba(0,0,0,0.15);
+}
+
+.balloon:hover {
+    transform: scale(1.08);
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 43px;
+    width: 10px;
+    height: 15px;
+    background: inherit;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.string {
+    position: absolute;
+    top: 115px;
+    left: 59px;
+    height: 60px;
+    border-left: 2px solid white;
+}
+
+.emoji {
+    display: none;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 30px;
+    font-size: 55px;
+    animation: emojiShow 0.6s ease;
+}
+
+.balloon.burst {
+    animation: burst 0.5s forwards;
+}
+
+.balloon-box.revealed .emoji {
+    display: block;
+}
+
+.balloon-box.revealed .string {
+    display: none;
+}
+
+.next {
+    display: none;
+    margin-top: 25px;
+}
+
+button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #764ba2;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+@keyframes burst {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes emojiShow {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎈 Four Little Surprises 🎈</h1>
+
+<p class="subtitle">
+Touch each balloon and discover your surprise ❤️
+</p>
+
+<div class="balloons">
+
+    <div class="balloon-box">
+        <div class="balloon" onclick="burst(this, '🌍')"
+             style="background:#ff4f81;"></div>
+        <div class="string"></div>
+        <div class="emoji">🌍</div>
+    </div>
+
+    <div class="balloon-box">
+        <div class="balloon" onclick="burst(this, '🥰')"
+             style="background:#ff9f43;"></div>
+        <div class="string"></div>
+        <div class="emoji">🥰</div>
+    </div>
+
+    <div class="balloon-box">
+        <div class="balloon" onclick="burst(this, '❤️')"
+             style="background:#ee5253;"></div>
+        <div class="string"></div>
+        <div class="emoji">❤️</div>
+    </div>
+
+    <div class="balloon-box">
+        <div class="balloon" onclick="burst(this, '😘')"
+             style="background:#a55eea;"></div>
+        <div class="string"></div>
+        <div class="emoji">😘</div></div>
+    </div>
+
+</div>
+
+<div class="next" id="nextButton">
+
+    <p>✨ You found all my little surprises! ✨</p>
+
+    <button onclick="goToPhotos()">
+        📸 Click Here to See More
+    </button>
+
+</div>
+
+<script>
+
+let popped = 0;
+
+function burst(balloon, emoji) {
+
+    if (balloon.classList.contains("burst")) {
+        return;
+    }
+
+    balloon.classList.add("burst");
+
+    const box = balloon.parentElement;
+
+    box.classList.add("revealed");
+
+    popped++;
+
+    // Small burst effect
+    for (let i = 0; i < 8; i++) {
+
+        const heart = document.createElement("span");
+
+        heart.innerHTML = "✨";
+        heart.style.position = "fixed";
+        heart.style.left = balloon.getBoundingClientRect().left + 40 + "px";
+        heart.style.top = balloon.getBoundingClientRect().top + 40 + "px";
+        heart.style.fontSize = "20px";
+
+        document.body.appendChild(heart);
+
+        heart.animate(
+            [
+                { transform: "translate(0,0)", opacity: 1 },
+                {
+                    transform:
+                    `translate(${Math.random()*160-80}px,
+                    ${Math.random()*160-80}px)`,
+                    opacity: 0
+                }
+            ],
+            {
+                duration: 800
+            }
+        );
+
+        setTimeout(() => heart.remove(), 800);
+    }
+
+    if (popped === 4) {
+        document.getElementById("nextButton").style.display = "block";
+    }
+}
+
+function goToPhotos() {
+    window.location.href = "PAGE3.HTML";
+}
+
+</script>
+
+</body>
+</html>

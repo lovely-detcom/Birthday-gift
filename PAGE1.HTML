@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #ff4f81, #c471ed, #ff758c);
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 35px 20px;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.heart {
+    font-size: 70px;
+    animation: heartbeat 1s infinite;
+}
+
+h1 {
+    font-size: 42px;
+    text-shadow: 0 0 20px white;
+}
+
+h2 {
+    font-size: 27px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #e84393;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+@keyframes heartbeat {
+    50% {
+        transform: scale(1.2);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="heart">❤️</div>
+
+    <h1>Happy Birthday 🎂</h1>
+
+    <h2>My Beautiful Love 💕</h2>
+
+    <p>
+        Today is a very special day because
+        the most special person in my life was born. ❤️
+        <br><br>
+        I have prepared a little surprise for you...
+        🎁
+    </p>
+    
+    <button onclick="window.location.href='PAGE2.HTML'">
+    💌 One More Surprise
+</button>
+
+</div>
+
+<script>
+function goToBalloons() {
+    window.location.href = "balloons.html";
+}
+</script>
+
+</body>
+</html>
